@@ -13,9 +13,11 @@ let get = (url) => {
   });
 }
 
+const EMBED = 'embed[]=';
+
 class TVMaze {
 
-  constructor(url = "http://api.tvmaze.com/") {
+  constructor(url = 'http://api.tvmaze.com/') {
     this.APIURL = url;
   }
 
@@ -23,12 +25,26 @@ class TVMaze {
     return get(this.APIURL + 'search/shows/?q=' + searchString);
   }
 
-  getShow(tvMazeId) {
-    return get(this.APIURL + 'shows/' + tvMazeId);
+  getShow(tvMazeId, embed) {
+    let extra = '';
+
+    if (embed) {
+      extra = '?' + EMBED + embed.join('&' + EMBED);
+    }
+
+    return get(this.APIURL + 'shows/' + tvMazeId + extra);
   }
 
   getEpisodes(tvMazeId) {
-    return get(this.APIURL + 'shows/' + tvMazeId + "/episodes");
+    return get(this.APIURL + 'shows/' + tvMazeId + '/episodes');
+  }
+
+  getCast(tvMazeId) {
+    return get(this.APIURL + 'shows/' + tvMazeId + '/cast');
+  }
+
+  getUpdates() {
+    return get(this.APIURL + 'updates/shows');
   }
 
 }

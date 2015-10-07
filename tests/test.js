@@ -36,6 +36,33 @@ test('get Futurama', function (t) {
 
 });
 
+test('get Futurama with cast', function(t) {
+  t.plan(3);
+
+  var tvm = new TVMaze();
+  tvm.getShow(538,['cast']).then( function(show) {
+
+    t.equal(show.name, 'Futurama');
+    t.equal(show.id, 538);
+    t.ok(show._embedded.cast.length, "includes at least one cast member");
+
+  });
+});
+
+test('get Futurama with cast and episodes', function(t) {
+  t.plan(4);
+
+  var tvm = new TVMaze();
+  tvm.getShow(538,['cast','episodes']).then( function(show) {
+
+    t.equal(show.name, 'Futurama');
+    t.equal(show.id, 538);
+    t.ok(show._embedded.cast.length, "includes at least one cast member");
+    t.ok(show._embedded.episodes.length, "includes at least one episode");
+
+  });
+});
+
 test('get episodes for Futurama', function (t) {
   t.plan(3);
 

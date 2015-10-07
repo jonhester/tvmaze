@@ -27,4 +27,14 @@ tvm.getShow(538).then( function (show) {
 tvm.getEpisodes(538).then( function (episodes) {
   console.log(episodes);
 });
+
+// Get a show by tvmaze id and include cast
+tvm.getShow(538, ['cast']).then( function (show) {
+  console.log(show);
+});
+
+// Get a show by tvmaze id and include cast and episodes
+tvm.getShow(538, ['cast', 'episodes']).then( function (show) {
+  console.log(show);
+});
 ```
