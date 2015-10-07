@@ -17,7 +17,7 @@ test('search for Futurama', function (t) {
   t.plan(3);
 
   var tvm = new TVMaze();
-  tvm.findShow('futurama').then( function(shows) {
+  tvm.findShow('futurama').then( function(shows,test,b) {
     t.ok(shows.length, "has at least one result");
     t.equal(shows[0].show.name, 'Futurama');
     t.equal(shows[0].show.id, 538);

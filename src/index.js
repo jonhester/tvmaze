@@ -1,17 +1,4 @@
-import request from 'request';
-
-let get = (url) => {
-  return new Promise ( (resolve, reject) => {
-
-    request.get({url:url, json:true}, function (error, response, body) {
-      if (!error && response.statusCode === 200) {
-        resolve(body);
-      } else {
-        reject(error);
-      }
-    });
-  });
-}
+import rp from 'request-promise';
 
 const EMBED = 'embed[]=';
 
@@ -22,7 +9,7 @@ class TVMaze {
   }
 
   findShow(searchString) {
-    return get(this.APIURL + 'search/shows/?q=' + searchString);
+    return rp({url: this.APIURL + 'search/shows/?q=' + searchString, json:true});
   }
 
   getShow(tvMazeId, embed) {
@@ -32,19 +19,19 @@ class TVMaze {
       extra = '?' + EMBED + embed.join('&' + EMBED);
     }
 
-    return get(this.APIURL + 'shows/' + tvMazeId + extra);
+    return rp({url: this.APIURL + 'shows/' + tvMazeId + extra, json:true});
   }
 
   getEpisodes(tvMazeId) {
-    return get(this.APIURL + 'shows/' + tvMazeId + '/episodes');
+    return rp({url: this.APIURL + 'shows/' + tvMazeId + '/episodes', json:true});
   }
 
   getCast(tvMazeId) {
-    return get(this.APIURL + 'shows/' + tvMazeId + '/cast');
+    return rp({url: this.APIURL + 'shows/' + tvMazeId + '/cast', json:true});
   }
 
   getUpdates() {
-    return get(this.APIURL + 'updates/shows');
+    return rp({url: this.APIURL + 'updates/shows', json:true});
   }
 
 }
