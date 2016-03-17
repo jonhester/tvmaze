@@ -28,6 +28,11 @@ tvm.getEpisodes(538).then( function (episodes) {
   console.log(episodes);
 });
 
+// Get specific episode for a show by tvmaze episode id
+tvm.getEpisodeById(49411).then( function (episode) {
+  console.log(episode);
+});
+
 // Get a show by tvmaze id and include cast
 tvm.getShow(538, ['cast']).then( function (show) {
   console.log(show);
