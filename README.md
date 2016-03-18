@@ -1,4 +1,4 @@
-# tvmaze
+# tvmaze ![Build Status](https://travis-ci.org/jonhester/tvmaze.svg?branch=master)
 Node wrapper for tvmaze that returns promises
 
 ## Installation
