@@ -26,6 +26,10 @@ class TVMaze {
     return rp({url: this.APIURL + 'shows/' + tvMazeId + '/episodes', json:true});
   }
 
+  getEpisodeById(tvMazeEpisodeId) {
+    return rp({url: this.APIURL + 'episodes/' + tvMazeEpisodeId, json:true})
+  }
+
   getCast(tvMazeId) {
     return rp({url: this.APIURL + 'shows/' + tvMazeId + '/cast', json:true});
   }

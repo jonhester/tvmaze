@@ -74,3 +74,14 @@ test('get episodes for Futurama', function (t) {
   });
 
 });
+
+test('get specific episode for Futurama', function(t) {
+  t.plan(3)
+
+	var tvm = new TVMaze();
+  tvm.getEpisodeById(49411).then( function(episode) {
+    t.ok(episode, "retrieves episode");
+    t.equal(episode.name, 'Meanwhile');
+    t.equal(episode.id, 49411);
+  });
+})
