@@ -42,4 +42,9 @@ tvm.getShow(538, ['cast']).then( function (show) {
 tvm.getShow(538, ['cast', 'episodes']).then( function (show) {
   console.log(show);
 });
+
+// Get populars tv shows (
+tvm.getPopulars(20).then( function (showq) {
+  console.log(showq);
+});
 ```
