@@ -39,14 +39,22 @@ class TVMaze {
   }
 
   getPopulars(limit) {
-    limit = parseInt(limit) || 20;
+    const currentLimit = parseInt(limit, 10) || 20;
+
+    function quickSort(a, b) {
+      return b.weight - a.weight;
+    }
+
+    function sortShowsByWeight(shows) {
+      let sortedShows = shows;
+      if (sortedShows && sortedShows.length > 0) {
+        sortedShows = sortedShows.sort(quickSort).slice(0, currentLimit);
+      }
+      return sortedShows;
+    }
+
     return rp({ url: `${this.APIURL}shows`, json: true })
-      .then(function(shows) {
-        if (shows && shows.length > 0) {
-          shows = shows.sort(function(a,b) { return b.weight - a.weight}).slice(0, limit);
-        }
-        return shows;
-      });
+      .then(sortShowsByWeight);
   }
 }
 
