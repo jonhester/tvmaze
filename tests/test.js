@@ -87,7 +87,7 @@ test('get specific episode for Futurama', function(t) {
 });
 
 test('get popular tv shows', function(t) {
-  t.plan(3)
+  t.plan(1)
 
   var tvm = new TVMaze();
   tvm.getPopulars().then( function(shows) {
