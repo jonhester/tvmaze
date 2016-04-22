@@ -84,4 +84,13 @@ test('get specific episode for Futurama', function(t) {
     t.equal(episode.name, 'Meanwhile');
     t.equal(episode.id, 49411);
   });
+});
+
+test('get popular tv shows', function(t) {
+  t.plan(1)
+
+  var tvm = new TVMaze();
+  tvm.getPopulars().then( function(shows) {
+    t.ok(shows.length, "has at least one popular show");
+  });
 })

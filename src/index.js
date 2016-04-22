@@ -38,6 +38,24 @@ class TVMaze {
     return rp({ url: `${this.APIURL}updates/shows`, json: true });
   }
 
+  getPopulars(limit) {
+    const currentLimit = parseInt(limit, 10) || 20;
+
+    function quickSort(a, b) {
+      return b.weight - a.weight;
+    }
+
+    function sortShowsByWeight(shows) {
+      let sortedShows = shows;
+      if (sortedShows && sortedShows.length > 0) {
+        sortedShows = sortedShows.sort(quickSort).slice(0, currentLimit);
+      }
+      return sortedShows;
+    }
+
+    return rp({ url: `${this.APIURL}shows`, json: true })
+      .then(sortShowsByWeight);
+  }
 }
 
 export default TVMaze;
